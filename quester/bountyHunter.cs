@@ -83,13 +83,13 @@ namespace quester
                 {
                     Console.WriteLine("super, vous etes arriver a saboter la station ainsi que condamner les hangars " +
                         "pour qu'aucun vaissaux ne sortent");
-                    Console.WriteLine("la base et inactive mais pas pour longtemps just assez pour pouvoir causer d'assez lourd degas ");
+                    Console.WriteLine("l'avant-post et inactive mais pas pour longtemps just assez pour pouvoir causer d'assez lourds degas");
                 }
                 else
                 {
-                    Console.WriteLine("");
+                    Console.WriteLine("apres avoir fait le tour de l'avant-post vous apercevez le convertiseur d'energy principale et le faite exploser et la station avec");
                 }
-                Console.WriteLine("felicitation l'avant post et HS rentrez pour toucher votre prime");
+                Console.WriteLine("felicitation l'avant-post et HS rentrez pour toucher votre prime");
             }
         }
     }
