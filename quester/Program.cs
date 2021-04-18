@@ -35,8 +35,21 @@ namespace quester
             }
         }
 
+        void deleteFinishedQuest()
+        {
+            for (int i = 0; i < owned.Count; i++)
+            {
+                if (owned[i].isFinish == true)
+                {
+                    owned.RemoveAt(i);
+                    break;
+                }
+            }
+        }
+
         void questProgress()
         {
+            deleteFinishedQuest();
             Console.WriteLine("\n\nque voulez vous faire ?");
             Console.WriteLine("\tsuivre une quete disponible dans votre journale de bord ?");
             int i = 0;
@@ -46,15 +59,21 @@ namespace quester
                 Console.WriteLine("\t\t" + i + ") " + a.type());
             }
             i += 1;
-            Console.WriteLine("\t"+ i + ") requperer une autre quete ?");
-            int choice = Selector(this.owned.Count + 1);
+            Console.WriteLine("\t"+ i + ") recuperer une autre quete ?");
+            i += 1;
+            Console.WriteLine("\t" + i + ") quitter");
+            int choice = Selector(this.owned.Count + 2);
             if (choice <= this.owned.Count)
             {
-                //grab quest and progress
+                this.owned[choice - 1].travelling();
+            }
+            else if (choice == this.owned.Count + 1)
+            {
+                getQuest();
             }
             else
             {
-                getQuest();
+                System.Environment.Exit(1);
             }
         }
 

@@ -23,6 +23,12 @@ namespace quester
         }
 
         public coordinate location;
+        public int space = 26;
+        public int befor_space = 0;
+        public bool travelBack = false;
+        public bool isFinish = false;
+
+        public Random rand = new Random();
 
         public mission()
         {
@@ -41,12 +47,20 @@ namespace quester
 
         public int Selector(List<string> lst)
         {
-            return 0;
+            int number = lst.Count; //can't be greater than 9
+            int i = 0;
+            foreach (string a in lst)
+            {
+                i += 1;
+                Console.WriteLine("\t" + i + ") " + a);
+            }
+            char ret = Console.ReadLine()[0];
+            return (ret > '0' && ret <= '0' + number) ? ret - '0' : Selector(lst);
         }
 
         public virtual void ambush()
         {
-
+            
         }
 
         public virtual void destination()
@@ -54,10 +68,95 @@ namespace quester
 
         }
 
+        public virtual void finish()
+        {
+
+        }
+
+        public void going()
+        {
+            const char destination = 'O';
+            const string ship = "|-";
+
+            for (int j = rand.Next(befor_space, space); j < space; j++)
+            {
+                for (int i = 0; i <= space; i++)
+                {
+                    if (i == befor_space)
+                        Console.Write(ship);
+                    else if (i == space)
+                        Console.Write(destination);
+                    else
+                        Console.Write(' ');
+                }
+                Console.Write('\r');
+                befor_space += 1;
+                System.Threading.Thread.Sleep(500);
+            }
+            if (befor_space == space)
+                travelBack = true;
+            Console.Write('\n');
+        }
+
+        public void goingBack()
+        {
+            const char destination = 'O';
+            const string ship = "-|";
+
+            if (-befor_space >= 0)
+                return;
+            for (int j = rand.Next(-befor_space, 0); j <= 0 || befor_space == 0; j++)
+            {
+                for (int i = 0; i <= space; i++)
+                {
+                    if (i == befor_space)
+                        Console.Write(ship);
+                    else if (i == space)
+                        Console.Write(destination);
+                    else
+                        Console.Write(' ');
+                }
+                Console.Write('\r');
+                befor_space -= 1;
+                System.Threading.Thread.Sleep(500);
+            }
+            if (befor_space <= 0)
+                isFinish = true;
+            Console.Write('\n');
+
+
+        }
+
         public void travelling()
         {
-            // make progress
-            string test = "|-.....................O";
+            Console.WriteLine("vous vous lancez dans votre mission.");
+            
+            if (!travelBack)
+                going();
+            else
+                goingBack();
+
+            int ambu = rand.Next(0, 2);
+            if (befor_space == space)
+            {
+                destination();
+                travelling();
+            }
+            else if (befor_space == 0 && travelBack == true)
+            {
+                finish();
+                travelling();
+            }
+            else if (ambu == 1)
+            {
+                this.ambush();
+                travelling();
+            }
+            else
+            {
+                Console.WriteLine("vous profitez de la station pour faire un arret dans votre mission.");
+            }
+            
         }
     }
 }
