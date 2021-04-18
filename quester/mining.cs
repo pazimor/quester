@@ -85,14 +85,14 @@ namespace quester
         public void randomizeAsteroids(int i, bool explo)
         {
             minerals current = miningList[base.rand.Next(0, miningList.Count)];
-            Console.WriteLine("asteroide " + (i + 1) + ") vous avez recuperer : " + ((explo) ? base.rand.Next(current.minExplo, current.maxExplo) : base.rand.Next(current.minLazer, current.maxLazer)) + " fragment de : " + current.name);
+            Console.WriteLine("asteroid " + (i + 1) + ") vous avez recuperer : " + ((explo) ? base.rand.Next(current.minExplo, current.maxExplo) : base.rand.Next(current.minLazer, current.maxLazer)) + " fragment de : " + current.name);
         }
         
         public override void destination()
         {
             Console.WriteLine("vous arrivez a destination.");
             int nbAsteroids = base.rand.Next(5, 10);
-            Console.WriteLine("devant vous ce trouve " + nbAsteroids + " asteroides.");
+            Console.WriteLine("devant vous ce trouve " + nbAsteroids + " asteroids.");
             Console.WriteLine("comment voulez-vous miner ??");
             
             if (base.Selector(destinaionHowLst) == 1)
