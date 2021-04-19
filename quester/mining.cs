@@ -7,6 +7,7 @@ namespace quester
 {
     class mining : mission
     {
+        //structure de minerais (sert a la creation des asteroids)
         public struct minerals {
 
             public minerals(string n, int maxlazer, int minlazer, int maxexplo, int minexplo) 
@@ -32,6 +33,7 @@ namespace quester
 
         public mining()
         {
+            //creation des lists
             ambushPirateLst.Add("vous afrontez les pirates");
             ambushPirateLst.Add("vous faites un detour pour ne pas vous faire repérer");
 
@@ -61,6 +63,7 @@ namespace quester
 
         public override void ambush()
         {
+            //embuscade story
             Console.WriteLine("lors de votre voyage vous rencontrez des pirates.");
             Console.WriteLine("que faite vous ??");
             if (base.Selector(ambushPirateLst) == 1)
@@ -84,17 +87,21 @@ namespace quester
 
         public void randomizeAsteroids(int i, bool explo)
         {
+            //random chaques asteroides
             minerals current = miningList[base.rand.Next(0, miningList.Count)];
             Console.WriteLine("asteroid " + (i + 1) + ") vous avez recuperer : " + ((explo) ? base.rand.Next(current.minExplo, current.maxExplo) : base.rand.Next(current.minLazer, current.maxLazer)) + " fragment de : " + current.name);
         }
         
         public override void destination()
         {
+            //mining session
             Console.WriteLine("vous arrivez a destination.");
+            //generations d'asteroides contenant des resources
             int nbAsteroids = base.rand.Next(5, 10);
             Console.WriteLine("devant vous ce trouve " + nbAsteroids + " asteroids.");
             Console.WriteLine("comment voulez-vous miner ??");
             
+            //ici sont generer les materiaux recupere des asteroides en fonction des methodes d'extractions
             if (base.Selector(destinaionHowLst) == 1)
             {
                 for(int i = 0; i < nbAsteroids; i++)

@@ -13,6 +13,7 @@ namespace quester
 
         public exploration()
         {
+            //creation des lists
             ambushLueurLst.Add("vous allez jeter un oeil (peut-etre une grande decouverte ?).");
             ambushLueurLst.Add("vous continuer votre chemain (peut etre encore un coup des pirates).");
 
@@ -25,6 +26,7 @@ namespace quester
 
         public override string type()
         {
+            //titre de mission
             return "mission d'exploration";
         }
 
@@ -35,6 +37,7 @@ namespace quester
 
         public override void ambush()
         {
+            //embuscade story
             Console.WriteLine("lors de votre voyage vous appercevez une lueur puissante sur une planete.");
             Console.WriteLine("que faite vous ??");
             if (base.Selector(ambushLueurLst) == 1)
@@ -59,9 +62,11 @@ namespace quester
 
         public override void destination()
         {
+
             Console.WriteLine("vous penetrez dans un sercteur non repertorier");
             if (base.rand.Next(0, 2) == 1)
             {
+                //outposte story
                 Console.WriteLine("ce secteur semble etre sous influence pirate.");
                 Console.WriteLine("que voulez vous faire ?");
                 if(base.Selector(destinationPirateLst) == 1)
@@ -81,6 +86,7 @@ namespace quester
             }
             else
             {
+                //discovery story
                 Console.WriteLine("ce secteur semble etre inconue par la galaxie.");
                 Console.WriteLine("que voulez vous faire ?");
                 if (base.Selector(destinationUnknownLst) == 1)

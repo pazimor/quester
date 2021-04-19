@@ -12,6 +12,7 @@ namespace quester
 
         public bountyHunter()
         {
+            //creation des lists
             ambushPirateLst.Add("vous afrontez les pirates");
             ambushPirateLst.Add("vous faites un detour pour ne pas vous faire repérer");
 
@@ -24,6 +25,7 @@ namespace quester
 
         public override string type()
         {
+            //titre de mission
             return "mission de chasseur de prime";
         }
 
@@ -34,6 +36,7 @@ namespace quester
 
         public override void ambush()
         {
+            //embuscade story
             Console.WriteLine("lors de votre voyage vous rencontrez des pirates.");
             Console.WriteLine("que faite vous ??");
             if (base.Selector(ambushPirateLst) == 1)
@@ -56,12 +59,12 @@ namespace quester
 
         public override void destination()
         {
-            //wanted or outpost
             Console.WriteLine("vous arrivez a destination.");
             int nbAsteroids = base.rand.Next(0, 2);
 
             if (base.rand.Next(0, 2) == 1)
             {
+                // adversaire story
                 Console.WriteLine("en face de vous ce dresse votre adversaire.");
                 Console.WriteLine("vous allez devoir l'affronter: comment compter vous faire ?");
                 if (base.Selector(destinationWantedLst) == 1)
@@ -77,6 +80,7 @@ namespace quester
             }
             else
             {
+                //outpost story
                 Console.WriteLine("en face de vous ce trouve un avant-post pirate");
                 Console.WriteLine("pour affronter une flotte il faut etre methodique. par ou voulez vous commencer ?");
                 if (base.Selector(destinationoutpostLst) == 1)
